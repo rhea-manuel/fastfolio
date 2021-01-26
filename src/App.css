@@ -1,38 +1,239 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Raleway:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+:root {
+  --body-font: 'Open Sans';
+  --heading-font: 'Nunito';
+  --bg: #181818;
+  --sidebar-bg: #050505;
+  --text: #C9D1D9;
+  --accent: #9B59A4;
+}
+
+/* LOADING STYLES */
+
+.loading {
+  height: 100vh;
+  background: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: grey;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* MAIN STYLES */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.4rem;
+}
+
+h1, h2, h3 {
+  color: var(--accent);
+  font: var(--heading-font);
+  font-size: 2.5rem;
+}
+
+h3 {
+  color: var(--text);
+  font-size: 1.8rem;
+  margin-top: 15%;
+}
+
+a {
+  color: var(--text);
+  font-size: 1.6rem;
+  text-decoration: none;
+  padding-bottom: 2px;
+  opacity: .70;
+  transition: .15s;
+}
+
+p {
+  font-size: 1.4rem;
+  color: var(--text);
+  line-height: 150%;
+}
+
+i {
+  font-size: 1.8rem;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
   display: flex;
   flex-direction: column;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 3%;
+  position: sticky;
+  top: 0;
+}
+
+a:hover, a:hover i {
+  color: var(--accent);
+  opacity: 1;
+  transition: .15s;
+}
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 3% 0;
+  /* padding: 2%; */
 }
 
-.App-link {
-  color: #61dafb;
+.gallery div {
+  /* display: inline-block; */
+  width: 45%;
+  margin: 1%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.gallery div img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.footer {
+  background: var(--sidebar-bg);
+  text-align: center;
+  padding: 3%;
+  position: absolute;
+  bottom: 2%;
+}
+
+.socialmedia-links{
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile {
+  display: none;
+}
+
+.desktop {
+  display: block;
+}
+
+@media(max-width:750px){
+
+  .container{
+    display: block;
   }
-  to {
-    transform: rotate(360deg);
+
+  .sidebar{
+    position: relative;
+    padding: 3% 5%;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar h3 {
+    margin-top: 5%;
+    margin-bottom: 0;
+  }
+
+  .socialmedia-links{
+    flex-direction: row;
+    width: 95%;
+    justify-content: center;
+  }
+
+  .socialmedia-links a {
+    margin: 2%;
+
+  }
+
+  .footer {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
   }
 }
