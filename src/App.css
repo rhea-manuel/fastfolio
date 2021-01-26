@@ -214,8 +214,9 @@ a:hover, a:hover i {
 
   .socialmedia-links{
     flex-direction: row;
-    width: 95%;
+    width: 90vw;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .socialmedia-links a {

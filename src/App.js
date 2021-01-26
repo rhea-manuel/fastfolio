@@ -62,11 +62,13 @@ class App extends React.Component {
 
 
             records.forEach(element => {
-              links.push({
-                url: element.fields.URL,
-                icon: element.fields["Social Media Site"],
-                urlName: element.fields.Handle
-              })
+              if (element.fields.URL != null && element.fields["Social Media Site"] != null) {
+                links.push({
+                  url: element.fields.URL,
+                  icon: element.fields["Social Media Site"],
+                  urlName: element.fields.Handle
+                })
+              }
             });
 
             this.setState({
@@ -92,18 +94,23 @@ class App extends React.Component {
           <div className="sidebar">
             <h1>{this.state.name}</h1>
             <p>{this.state.description}</p>
-            <IconLink url={`mailto:${this.state.email}`} icon="las la-envelope" urlName={this.state.email}></IconLink>
-            {/* <a href=""><i className=""></i>  </a> */}
 
-            <h3>Links</h3>
-            <div className="socialmedia-links">
+            {
+              this.state.email != null ? <IconLink url={`mailto:${this.state.email}`} icon="las la-envelope" urlName={this.state.email}></IconLink> : null
+            }
 
-              {
-                this.state.links.map((item) => {
-                  return (<IconLink url={item.url} icon={`lab la-${item.icon}`} urlName={item.urlName}></IconLink>)
-                })
-              }
-            </div>
+            {
+              this.state.links.length > 0 ? <div><h3>Links</h3>
+                <div className="socialmedia-links">
+
+                  {
+                    this.state.links.map((item) => {
+                      return (<IconLink url={item.url} icon={`lab la-${item.icon}`} urlName={item.urlName}></IconLink>)
+                    })
+                  }
+                </div></div> : null
+            }
+
             <footer class="footer desktop">
               Copyright © {this.state.name}
             </footer>
